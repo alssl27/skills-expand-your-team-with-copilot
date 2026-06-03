@@ -257,13 +257,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (passwordInput && togglePasswordVisibilityButton) {
     togglePasswordVisibilityButton.addEventListener("click", () => {
       const isPasswordVisible = passwordInput.type === "text";
-      passwordInput.type = isPasswordVisible ? "password" : "text";
-      togglePasswordVisibilityButton.textContent = isPasswordVisible
-        ? "👁️"
-        : "🙈";
+      const nextInputType = isPasswordVisible ? "password" : "text";
+      passwordInput.type = nextInputType;
+      const isPasswordNowVisible = nextInputType === "text";
+      togglePasswordVisibilityButton.textContent = isPasswordNowVisible
+        ? "🙈"
+        : "👁️";
       togglePasswordVisibilityButton.setAttribute(
         "aria-label",
-        isPasswordVisible ? "Show password" : "Hide password"
+        isPasswordNowVisible ? "Hide password" : "Show password"
       );
     });
   }
