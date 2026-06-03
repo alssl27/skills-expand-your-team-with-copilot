@@ -451,6 +451,32 @@ button {
   text-align: center;
 }
 
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-visibility-toggle {
+  position: absolute;
+  right: 8px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.password-visibility-toggle:hover {
+  color: var(--primary);
+}
+
 /* Hidden class - critical for showing/hiding elements */
 .hidden {
   display: none !important;

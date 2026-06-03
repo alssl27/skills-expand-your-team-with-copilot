@@ -24,6 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("login-form");
   const closeLoginModal = document.querySelector(".close-login-modal");
   const loginMessage = document.getElementById("login-message");
+  const passwordInput = document.getElementById("password");
+  const togglePasswordVisibilityButton = document.getElementById(
+    "toggle-password-visibility"
+  );
 
   // Activity categories with corresponding colors
   const activityTypes = {
@@ -218,11 +222,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Open login modal
+  function resetPasswordVisibility() {
+    if (!passwordInput || !togglePasswordVisibilityButton) {
+      return;
+    }
+
+    passwordInput.type = "password";
+    togglePasswordVisibilityButton.textContent = "Show";
+    togglePasswordVisibilityButton.setAttribute("aria-label", "Show password");
+  }
+
   function openLoginModal() {
     loginModal.classList.remove("hidden");
     loginModal.classList.add("show");
     loginMessage.classList.add("hidden");
     loginForm.reset();
+    resetPasswordVisibility();
   }
 
   // Close login modal
@@ -231,6 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       loginModal.classList.add("hidden");
       loginForm.reset();
+      resetPasswordVisibility();
     }, 300);
   }
 
@@ -238,6 +254,19 @@ document.addEventListener("DOMContentLoaded", () => {
   loginButton.addEventListener("click", openLoginModal);
   logoutButton.addEventListener("click", logout);
   closeLoginModal.addEventListener("click", closeLoginModalHandler);
+  if (passwordInput && togglePasswordVisibilityButton) {
+    togglePasswordVisibilityButton.addEventListener("click", () => {
+      const isPasswordHidden = passwordInput.type !== "text";
+      passwordInput.type = isPasswordHidden ? "text" : "password";
+      togglePasswordVisibilityButton.textContent = isPasswordHidden
+        ? "Hide"
+        : "Show";
+      togglePasswordVisibilityButton.setAttribute(
+        "aria-label",
+        isPasswordHidden ? "Hide password" : "Show password"
+      );
+    });
+  }
 
   // Close login modal when clicking outside
   window.addEventListener("click", (event) => {
