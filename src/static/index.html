@@ -155,12 +155,22 @@
           </div>
           <div class="form-group">
             <label for="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              required
-              placeholder="Enter your password"
-            />
+            <div class="password-input-wrapper">
+              <input
+                type="password"
+                id="password"
+                required
+                placeholder="Enter your password"
+              />
+              <button
+                type="button"
+                id="toggle-password-visibility"
+                class="password-visibility-toggle"
+                aria-label="Show password"
+              >
+                👁️
+              </button>
+            </div>
           </div>
           <button type="submit">Login</button>
         </form>
