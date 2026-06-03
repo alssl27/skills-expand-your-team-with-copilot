@@ -256,8 +256,8 @@ document.addEventListener("DOMContentLoaded", () => {
   closeLoginModal.addEventListener("click", closeLoginModalHandler);
   if (passwordInput && togglePasswordVisibilityButton) {
     togglePasswordVisibilityButton.addEventListener("click", () => {
-      passwordInput.type = passwordInput.type === "text" ? "password" : "text";
-      const isPasswordVisible = passwordInput.type === "text";
+      const isPasswordVisible = passwordInput.type !== "text";
+      passwordInput.type = isPasswordVisible ? "text" : "password";
       togglePasswordVisibilityButton.textContent = isPasswordVisible
         ? "🙈"
         : "👁️";
