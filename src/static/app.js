@@ -256,16 +256,14 @@ document.addEventListener("DOMContentLoaded", () => {
   closeLoginModal.addEventListener("click", closeLoginModalHandler);
   if (passwordInput && togglePasswordVisibilityButton) {
     togglePasswordVisibilityButton.addEventListener("click", () => {
+      passwordInput.type = passwordInput.type === "text" ? "password" : "text";
       const isPasswordVisible = passwordInput.type === "text";
-      const nextInputType = isPasswordVisible ? "password" : "text";
-      passwordInput.type = nextInputType;
-      const isPasswordNowVisible = nextInputType === "text";
-      togglePasswordVisibilityButton.textContent = isPasswordNowVisible
+      togglePasswordVisibilityButton.textContent = isPasswordVisible
         ? "🙈"
         : "👁️";
       togglePasswordVisibilityButton.setAttribute(
         "aria-label",
-        isPasswordNowVisible ? "Hide password" : "Show password"
+        isPasswordVisible ? "Hide password" : "Show password"
       );
     });
   }
